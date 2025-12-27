@@ -1,4 +1,4 @@
-module devtodo-demo
+module cldo
 
 go 1.25.5
 

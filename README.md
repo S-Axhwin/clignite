@@ -1,6 +1,6 @@
-# Devtodo CLI
+# cldo CLI
 
-**Devtodo** is a terminal-based developer todo list manager.  
+**cldo** is a terminal-based developer todo list manager.  
 It helps developers track tasks, manage states, assign priorities, and optionally use AI to suggest tags or priorities — all from the command line.
 
 ---
@@ -34,9 +34,9 @@ It helps developers track tasks, manage states, assign priorities, and optionall
 
 ```
 
-devtodo/
+cldo/
 ├─ cmd/
-│   └─ devtodo/
+│   └─ cldo/
 │       └─ main.go        # CLI entrypoint, parses commands
 ├─ internal/
 │   ├─ db/
@@ -62,13 +62,13 @@ devtodo/
 
 | Command                  | Description |
 |---------------------------|------------|
-| `devtodo add "task title"` | Add a new task |
-| `devtodo ls`               | List all tasks |
-| `devtodo rm <id>`          | Remove a task |
-| `devtodo done <id>`        | Mark task as done |
-| `devtodo start <id>`       | Mark task as in progress |
-| `devtodo block <id>`       | Mark task as blocked |
-| `devtodo undo <id>`        | Undo last state change |
+| `cldo add "task title"` | Add a new task |
+| `cldo ls`               | List all tasks |
+| `cldo rm <id>`          | Remove a task |
+| `cldo done <id>`        | Mark task as done |
+| `cldo start <id>`       | Mark task as in progress |
+| `cldo block <id>`       | Mark task as blocked |
+| `cldo undo <id>`        | Undo last state change |
 
 ### Task Attributes
 
@@ -88,28 +88,28 @@ devtodo/
 
 ```bash
 # Add a task
-devtodo add "Fix login bug"
+cldo add "Fix login bug"
 
 # List all tasks
-devtodo ls
+cldo ls
 
 # Mark a task as in progress
-devtodo start 1
+cldo start 1
 
 # Mark a task as blocked
-devtodo block 2
+cldo block 2
 
 # Mark a task as done
-devtodo done 1
+cldo done 1
 
 # Remove a task
-devtodo rm 3
+cldo rm 3
 
 # Undo last state change
-devtodo undo 2
+cldo undo 2
 
 # Optional: AI-assisted add
-devtodo add "Optimize database queries" --ai
+cldo add "Optimize database queries" --ai
 # Output: Suggests tags and priority automatically
 ````
 
@@ -120,29 +120,29 @@ devtodo add "Optimize database queries" --ai
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/devtodo.git
-cd devtodo
+git clone https://github.com/yourusername/cldo.git
+cd cldo
 ```
 
 2. Build the binary:
 
 ```bash
-go build -o devtodo ./cmd/devtodo
+go build -o cldo ./cmd/cldo
 ```
 
 3. Move binary to a folder in your PATH (optional):
 
 ```bash
-sudo mv devtodo /usr/local/bin/
+sudo mv cldo /usr/local/bin/
 ```
 
-Now you can run `devtodo` from anywhere.
+Now you can run `cldo` from anywhere.
 
 ---
 
 ## Usage
 
-* Database is stored in `~/.devtodo/devtodo.db`
+* Database is stored in `~/.cldo/cldo.db`
 * CLI commands are self-contained and cross-platform
 * AI integration (optional) requires an API key if using an external service
 
@@ -158,6 +158,6 @@ Now you can run `devtodo` from anywhere.
 
 ---
 
-**Devtodo** is designed for developers who prefer working in terminal environments, keeping task management fast, lightweight, and integrated with their workflow.
+**cldo** is designed for developers who prefer working in terminal environments, keeping task management fast, lightweight, and integrated with their workflow.
 
 ```
