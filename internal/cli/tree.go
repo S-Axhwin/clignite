@@ -47,7 +47,14 @@ func printTree(tasks []task.Task, ctxMap map[int]string) {
 	// Print tree with current folder as root
 	rootName := filepath.Base(cwd)
 	fmt.Println(rootName)
+
+	// Print tasks in the root directory
+	for _, t := range root.tasks {
+		fmt.Printf("[%d][%s] %s\n", t.ID, t.State, t.Title)
+	}
+
 	printNode(root, "", false)
+
 }
 
 func printNode(node *treeNode, prefix string, isRoot bool) {

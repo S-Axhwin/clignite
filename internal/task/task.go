@@ -78,8 +78,9 @@ func ListAllUnderRoot(root string) ([]Task, map[int]string, error) {
 			continue
 		}
 
-		// Skip tasks outside cwd
-		if strings.HasPrefix(rel, "..") {
+		// Skip tasks outside the root directory tree
+		// If rel starts with "..", it's outside; otherwise it's inside or at root
+		if strings.HasPrefix(rel, ".."+string(filepath.Separator)) || rel == ".." {
 			continue
 		}
 
