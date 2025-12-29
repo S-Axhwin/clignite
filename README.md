@@ -1,9 +1,9 @@
 # cldo CLI
 
 **cldo** is a fast, terminal-based todo manager built for developers.
-It lets you track tasks, manage states and priorities, and optionally use AI suggestions — entirely from the command line.
+It helps you track tasks, manage states and priorities, and optionally use AI suggestions — entirely from the command line.
 
-No servers. No accounts. One binary.
+No servers. No accounts. One local binary per OS.
 
 ---
 
@@ -12,62 +12,44 @@ No servers. No accounts. One binary.
 * Add, list, update, and remove tasks from the CLI
 * Task states: `todo`, `in-progress`, `blocked`, `done`
 * Task priorities: `low`, `mid`, `high`
-* Optional AI-assisted tag & priority suggestions
 * Context-aware tasks (per project / directory)
+* Tree view to visualize tasks per directory
 * Persistent local storage using SQLite
-* Cross-platform binaries (macOS, Linux, Windows)
 * Undo task state changes
+* Single-binary CLI (per OS)
 
 ---
 
-## Installation (Recommended)
+## Platform Support (Important)
 
-### macOS (Intel & Apple Silicon)
+> **cldo uses SQLite via CGO**
 
-```bash
-curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_darwin_amd64.tar.gz
-tar -xzf cldo_0.1.0_darwin_amd64.tar.gz
+Because of this:
 
-sudo mv cldo /usr/local/bin/
-```
+* ✅ macOS — supported (Intel + Apple Silicon)
+* ❌ Linux — not yet available
+* ❌ Windows — not yet available
 
----
-
-### Linux
-
-```bash
-curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_linux_amd64.tar.gz
-tar -xzf cldo_0.1.0_linux_amd64.tar.gz
-sudo mv cldo /usr/local/bin/
-```
-
-ARM64 (servers / Raspberry Pi):
-
-```bash
-curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_linux_arm64.tar.gz
-tar -xzf cldo_0.1.0_linux_arm64.tar.gz
-sudo mv cldo /usr/local/bin/
-```
+Linux and Windows support will be added later via **GitHub Actions**.
 
 ---
 
-### Windows (PowerShell)
+## Installation (macOS only)
 
-```powershell
-Invoke-WebRequest `
-  -Uri https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_windows_amd64.tar.gz `
-  -OutFile cldo.tar.gz
+### Intel (x86_64)
 
-tar -xzf cldo.tar.gz
-Move-Item cldo.exe C:\Windows\System32\
-tar -xf cldo.tar.gz
-Move-Item cldo.exe C:\Windows\System32\
+```bash
+curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.2.0/cldo_0.2.0_darwin_amd64.tar.gz
+tar -xzf cldo_0.2.0_darwin_amd64.tar.gz
+sudo mv cldo /usr/local/bin/
 ```
 
-Restart terminal, then:
+### Apple Silicon (ARM64)
 
-```powershell
-cldo --help
+```bash
+curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.2.0/cldo_0.2.0_darwin_arm64.tar.gz
+tar -xzf cldo_0.2.0_darwin_arm64.tar.gz
+sudo mv cldo /usr/local/bin/
 ```
 
 ---
@@ -78,59 +60,40 @@ cldo --help
 cldo --version
 ```
 
-You should see something like:
+Expected output:
 
 ```
-cldo v0.1.0
+cldo v0.2.0
 ```
-
-If this fails, installation is broken.
 
 ---
 
 ## Usage
 
-### Add a task
+Run commands like this:
 
 ```bash
-cldo add "Fix login bug"
+go run cmd/cldo/main.go
 ```
 
-### List tasks
+or after installing the binary:
 
 ```bash
-cldo ls
+cldo <command>
 ```
 
-### Start a task
+---
 
-```bash
-cldo start 1
-```
+### Commands
 
-### Block a task
-
-```bash
-cldo block 2
-```
-
-### Complete a task
-
-```bash
-cldo done 1
-```
-
-### Undo last change
-
-```bash
-cldo undo 1
-```
-
-### AI-assisted task creation
-
-```bash
-cldo add "Optimize database queries" --ai
-```
+| Command                 | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `cldo add "task title"` | Add a new task in the current directory  |
+| `cldo ls`               | List tasks in the current directory      |
+| `cldo ls -a`            | List **all tasks** grouped by directory  |
+| `cldo tree`             | Show tasks in **tree view** by directory |
+| `cldo done <id>`        | Mark task as done                        |
+| `cldo rm <id>`          | Remove a task                            |
 
 ---
 
@@ -142,7 +105,7 @@ cldo add "Optimize database queries" --ai
 
 ---
 
-## Folder Structure (For Contributors)
+## Folder Structure (Contributors)
 
 ```
 cldo/
@@ -154,26 +117,35 @@ cldo/
 ├─ go.mod
 ├─ go.sum
 ├─ Makefile
+├─ .goreleaser.yml
 └─ README.md
 ```
 
 ---
 
-## Development Install (Contributors Only)
+## Development Setup (Contributors Only)
 
 ```bash
 git clone https://github.com/S-Axhwin/clignite.git
 cd clignite
-go build -o cldo ./cmd/cldo
+CGO_ENABLED=1 go build -o cldo ./cmd/cldo
 ```
+
+> SQLite **requires CGO**. Builds with `CGO_ENABLED=0` will fail.
 
 ---
 
 ## Roadmap
 
+* GitHub Actions–based releases (Linux + Windows)
 * Homebrew install (`brew install cldo`)
 * Interactive TUI mode
-* Task sync & export
+* Task filtering & export
 * Plugin system
+* Optional AI-assisted features
 
 ---
+
+## License
+
+MIT
