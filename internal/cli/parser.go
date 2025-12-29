@@ -29,17 +29,16 @@ func Run() error {
 	switch os.Args[1] {
 	case "add":
 		return task.Add(os.Args[2])
-	case "ls":
-		if len(os.Args) > 2 && os.Args[2] == "--tree" {
-			cwd, _ := os.Getwd() // <-- current folder
-			tasks, ctxMap, err := task.ListAllUnderRoot(cwd)
-			if err != nil {
-				return err
-			}
-			printTree(tasks, ctxMap)
-			return nil
-		}
 
+	case "tree":
+		cwd, _ := os.Getwd() // <-- current folder
+		tasks, ctxMap, err := task.ListAllUnderRoot(cwd)
+		if err != nil {
+			return err
+		}
+		printTree(tasks, ctxMap)
+		return nil
+	case "ls":
 		if len(os.Args) > 2 && os.Args[2] == "-a" {
 			grouped, err := task.ListAllGrouped()
 			if err != nil {
@@ -79,9 +78,9 @@ func Run() error {
 func printHelp() {
 	fmt.Println(`
 cldo add "task title"
-cldo ls
 cldo ls           # list tasks in current directory
 cldo ls -a        # list ALL tasks grouped by directory
+cldo tree         # show tasks in tree view by directory
 cldo done <id>
 cldo rm <id>
 `)
