@@ -1,0 +1,15 @@
+version: 2
+
+project_name: cldo
+
+builds:
+  - id: cldo
+    main: ./cmd/cldo
+    binary: cldo
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
