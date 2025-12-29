@@ -25,17 +25,8 @@ No servers. No accounts. One binary.
 ### macOS (Intel & Apple Silicon)
 
 ```bash
-curl -sSL https://github.com/S-Axhwin/clignite/releases/latest/download/cldo_darwin_amd64.tar.gz \
-| tar -xz
-
-sudo mv cldo /usr/local/bin/
-```
-
-For Apple Silicon (M1/M2/M3):
-
-```bash
-curl -sSL https://github.com/S-Axhwin/clignite/releases/latest/download/cldo_darwin_arm64.tar.gz \
-| tar -xz
+curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_darwin_amd64.tar.gz
+tar -xzf cldo_0.1.0_darwin_amd64.tar.gz
 
 sudo mv cldo /usr/local/bin/
 ```
@@ -45,18 +36,16 @@ sudo mv cldo /usr/local/bin/
 ### Linux
 
 ```bash
-curl -sSL https://github.com/S-Axhwin/clignite/releases/latest/download/cldo_linux_amd64.tar.gz \
-| tar -xz
-
+curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_linux_amd64.tar.gz
+tar -xzf cldo_0.1.0_linux_amd64.tar.gz
 sudo mv cldo /usr/local/bin/
 ```
 
 ARM64 (servers / Raspberry Pi):
 
 ```bash
-curl -sSL https://github.com/S-Axhwin/clignite/releases/latest/download/cldo_linux_arm64.tar.gz \
-| tar -xz
-
+curl -LO https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_linux_arm64.tar.gz
+tar -xzf cldo_0.1.0_linux_arm64.tar.gz
 sudo mv cldo /usr/local/bin/
 ```
 
@@ -65,7 +54,12 @@ sudo mv cldo /usr/local/bin/
 ### Windows (PowerShell)
 
 ```powershell
-iwr https://github.com/S-Axhwin/clignite/releases/latest/download/cldo_windows_amd64.tar.gz -OutFile cldo.tar.gz
+Invoke-WebRequest `
+  -Uri https://github.com/S-Axhwin/clignite/releases/download/v0.1.0/cldo_0.1.0_windows_amd64.tar.gz `
+  -OutFile cldo.tar.gz
+
+tar -xzf cldo.tar.gz
+Move-Item cldo.exe C:\Windows\System32\
 tar -xf cldo.tar.gz
 Move-Item cldo.exe C:\Windows\System32\
 ```
