@@ -1,0 +1,43 @@
+# ---- Go build artifacts ----
+/bin/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# ---- Go test / coverage ----
+*.test
+*.out
+coverage/
+
+# ---- Go workspace ----
+go.work
+go.work.sum
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+
+# ---- Editor junk ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- CLI runtime data ----
+.cldo/
+.cldo.db
+*.db
+
+# ---- Logs ----
+*.log
+
+# ---- Env / secrets ----
+.env
+.env.*
+
+# ---- Temporary files ----
+tmp/
+temp/
