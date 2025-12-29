@@ -6,10 +6,20 @@ builds:
   - id: cldo
     main: ./cmd/cldo
     binary: cldo
+
+    env:
+      - CGO_ENABLED=1
+
     goos:
-      - linux
       - darwin
+      - linux
       - windows
+
     goarch:
       - amd64
       - arm64
+
+    ignore:
+      # CGO cross-compiling limitations
+      - goos: windows
+        goarch: arm64
